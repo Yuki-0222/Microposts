@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if (Auth::check()) {{-- ここにコメント --}}
+    @if (Auth::check()) {{-- ログインを確認 --}}
         <div class="row">
             <aside class="col-sm-4">
                 <div class="card">
