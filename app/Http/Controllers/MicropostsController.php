@@ -11,7 +11,7 @@ class MicropostsController extends Controller
         $data = [];
         if (\Auth::check()) { // Auth::check() はログインしているか確認する関数
             $user = \Auth::user(); // Auth::user() はログイン中のユーザーを取得する関数
-            $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(5);
+            $microposts = $user->feed_microposts()->orderBy('created_at', 'desc')->paginate(10);
             
             $data = [
                 'user' => $user,
