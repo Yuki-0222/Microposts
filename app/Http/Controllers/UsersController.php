@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->paginate(2);
+        $users = User::orderBy('id', 'desc')->paginate(10);
 
         return view('users.index', [
             'users' => $users,
@@ -32,6 +32,25 @@ class UsersController extends Controller
 
         return view('users.show', $data);
     }
+    
+    
+    // *** 追加 ***
+    public function favorites($id)
+    {
+        $user = User::find($id);
+        $favorites = $user->favorites()->orderBy('created_at', 'desc')->paginate(10);
+        
+        $data = [
+            'user' => $user,
+            'microposts' => $favorites,
+        ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.favorites', $data);
+    }
+    // ************
+    
     
     public function followings($id)
     {
